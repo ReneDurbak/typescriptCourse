@@ -2,23 +2,17 @@
 //---------
 // INTRO
 //---------
-const authorOne = { name: "Mario", avatar: "img/mario.png" };
-const newPost = {
-    title: "first post",
-    body: "something...",
-    tags: ["gaming", "tech"],
-    created_at: new Date(),
-    author: authorOne,
-};
-//--------------------------------------
-// interfaces as function argument types
-//--------------------------------------
-function createPost(post) {
-    console.log(`Created post: ${post.title} by ${post.author.name}`);
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    const c = Math.floor(Math.random() * 255);
+    return [r, b, c];
 }
-createPost(newPost);
-//------------------------
-// interfaces with arrays
-//------------------------
-let posts = [];
-posts.push(newPost);
+const colorOne = getRandomColor();
+const colorTwo = getRandomColor();
+const userOne = { name: "Mario", score: 75 };
+function formatUser(user) {
+    console.log(`${user.name} has a score of: ${user.score}`);
+}
+formatUser(userOne);
+formatUser({ name: 'Yoshi', score: 175 });
