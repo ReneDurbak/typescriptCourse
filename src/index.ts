@@ -1,4 +1,4 @@
-let age: number = 30
+/* let age: number = 30
 let firstName: string = 'Mario'
 let isFictional: boolean
 
@@ -28,5 +28,7 @@ let anotherThing: undefined
 //something = 10
 something = null
 //anotherThing = 'hello'
-anotherThing = undefined
+anotherThing = undefined */
 
+
+console.log("Hello world")
