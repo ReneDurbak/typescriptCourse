@@ -58,9 +58,9 @@ anotherThing = undefined */
 
 // const t = things[0];
 
-//------------------
+//---------------------------------------------------------
 // object literals & type interference with object literals
-//------------------
+//---------------------------------------------------------
 
 // let user: { firstName: string; age: number; id: number } = {
 //   firstName: "mario",
@@ -113,38 +113,77 @@ anotherThing = undefined */
 // any type
 //----------
 
-let age: any;
-let title;
+// let age: any;
+// let title;
 
-age = 30;
-age = false;
+// age = 30;
+// age = false;
 
-title = 25;
-title = "dada";
-title = {
-  name: "title",
-};
+// title = 25;
+// title = "dada";
+// title = {
+//   name: "title",
+// };
 
 //-------------------
 // any type in arrays
 //-------------------
 
-//let fruits = []
-let things: any[] = ["hello", true, 25, null];
+// //let fruits = []
+// let things: any[] = ["hello", true, 25, null];
 
-things.push({ id: 2 });
+// things.push({ id: 2 });
 
 //-------------------------
 // functions & any
 //-------------------------
 
-function addTogether(value: any): any {
-  return value + value;
+// function addTogether(value: any): any {
+//   return value + value;
+// }
+
+// const resultOne = addTogether(0.1);
+// const resultTwo = addTogether("hello");
+// //console.log(resultOne, resultTwo)
+
+// //useful when migrating project from js to ts
+// // bcs using any won't cause errors initially
+
+//-----------------
+// tuples
+//-----------------
+
+let person: [string, number, boolean] = ['Michael', 24, true]
+
+person[0] = 'John'
+//person[0] = 14
+
+//-----------------
+// tuples examples
+//-----------------
+
+let hsla: [number, string, string, number];
+hsla = [268, "100%", "64%", 0.8];
+
+let xy: [number, number];
+xy = [64.7, 20.1];
+
+function useCoords(): [number, number] {
+  //get coords
+
+  const lat = 100;
+  const long = 50;
+
+  return [lat, long];
 }
 
-const resultOne = addTogether(0.1);
-const resultTwo = addTogether("hello");
-//console.log(resultOne, resultTwo)
+const [lat, long] = useCoords();
 
-//useful when migrating project from js to ts
-// bcs using any won't cause errors initially
+//-----------------
+// named tuples
+//-----------------
+
+let user: [name: string, age: number]
+
+user = ['peach', 26]
+console.log(user[0])
