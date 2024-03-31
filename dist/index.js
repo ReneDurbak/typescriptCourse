@@ -30,4 +30,32 @@ let anotherThing: undefined
 something = null
 //anotherThing = 'hello'
 anotherThing = undefined */
-console.log("Hello world");
+//---------
+// arrays
+//---------
+let names = ['Mario', 'Luigi', 'Peach'];
+let ages = [25, 35, 40];
+names.push('bowser');
+ages.push(44);
+//------------------------------
+// type interference with arrays
+//------------------------------
+let fruits = ['apples', 'pears', 'bananas', 'mangos'];
+fruits.push('peaches');
+const fruit = fruits[3];
+let things = [1, true, 'hello'];
+const t = things[0];
+//------------------
+// object literals & type interference with object literals
+//------------------
+let user = {
+    firstName: 'mario',
+    age: 28,
+    id: 1,
+    //isFictional: true
+};
+user.firstName = 'luigi';
+// user.firstName = false
+//user.email = 'peach@gmail.com'
+user.id = 2;
+const age = user.age;
