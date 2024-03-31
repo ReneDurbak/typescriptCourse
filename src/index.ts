@@ -153,37 +153,84 @@ anotherThing = undefined */
 // tuples
 //-----------------
 
-let person: [string, number, boolean] = ['Michael', 24, true]
+// let person: [string, number, boolean] = ['Michael', 24, true]
 
-person[0] = 'John'
-//person[0] = 14
+// person[0] = 'John'
+// //person[0] = 14
 
 //-----------------
 // tuples examples
 //-----------------
 
-let hsla: [number, string, string, number];
-hsla = [268, "100%", "64%", 0.8];
+// let hsla: [number, string, string, number];
+// hsla = [268, "100%", "64%", 0.8];
 
-let xy: [number, number];
-xy = [64.7, 20.1];
+// let xy: [number, number];
+// xy = [64.7, 20.1];
 
-function useCoords(): [number, number] {
-  //get coords
+// function useCoords(): [number, number] {
+//   //get coords
 
-  const lat = 100;
-  const long = 50;
+//   const lat = 100;
+//   const long = 50;
 
-  return [lat, long];
-}
+//   return [lat, long];
+// }
 
-const [lat, long] = useCoords();
+// const [lat, long] = useCoords();
 
 //-----------------
 // named tuples
 //-----------------
 
-let user: [name: string, age: number]
+// let user: [name: string, age: number]
 
-user = ['peach', 26]
-console.log(user[0])
+// user = ['peach', 26]
+// console.log(user[0])
+
+//-----------------
+// interfaces
+//-----------------
+
+interface Author {
+  name: string;
+  avatar: string;
+}
+
+const authorOne: Author = { name: "Mario", avatar: "img/mario.png" };
+
+interface Post {
+  title: string;
+  body: string;
+  tags: string[];
+  created_at: Date;
+  author: Author;
+}
+
+const newPost: Post = { //the :Post type does not have to be here if we have every property that Post interface has
+  title: "first post",
+  body: "something...",
+  tags: ["gaming", "tech"],
+  created_at: new Date(),
+  author: authorOne,
+};
+
+//--------------------------------------
+// interfaces as function argument types
+//--------------------------------------
+
+function createPost(post: Post): void {
+  console.log(`Created post: ${post.title} by ${post.author.name}`);
+}
+
+createPost(newPost);
+
+//------------------------
+// interfaces with arrays
+//------------------------
+
+
+let posts: Post[] = []
+
+posts.push(newPost)
+
