@@ -239,32 +239,66 @@ anotherThing = undefined */
 
 //example 1 - tuple
 
-type Rgb = [number, number, number];
+// type Rgb = [number, number, number];
 
-function getRandomColor(): Rgb {
-  const r = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
-  const c = Math.floor(Math.random() * 255);
+// function getRandomColor(): Rgb {
+//   const r = Math.floor(Math.random() * 255);
+//   const b = Math.floor(Math.random() * 255);
+//   const c = Math.floor(Math.random() * 255);
 
-  return [r, b, c];
-}
+//   return [r, b, c];
+// }
 
-const colorOne = getRandomColor();
-const colorTwo = getRandomColor();
-//console.log(colorOne, colorTwo);
+// const colorOne = getRandomColor();
+// const colorTwo = getRandomColor();
+// //console.log(colorOne, colorTwo);
 
 //example 2 - object literal
 
-type User = {
-  name: string;
-  score: number;
-};
+// type User = {
+//   name: string;
+//   score: number;
+// };
 
-const userOne: User = { name: "Mario", score: 75 };
+// const userOne: User = { name: "Mario", score: 75 };
 
-function formatUser(user: User): void {
-    console.log(`${user.name} has a score of: ${user.score}`)
-}
+// function formatUser(user: User): void {
+//     console.log(`${user.name} has a score of: ${user.score}`)
+// }
 
-formatUser(userOne)
-formatUser({name: 'Yoshi', score:175})
+// formatUser(userOne)
+// formatUser({name: 'Yoshi', score:175})
+
+//--------------
+// union types
+//--------------
+
+// let someId: number | string;
+
+// someId = 1;
+// someId = "2";
+
+// let email: string | null = null;
+
+// email = "mario@gmail.com";
+// email = null;
+
+// type Id = number | string;
+// let anotherId: Id;
+
+// anotherId = "dadafsdf";
+// anotherId = 4;
+
+//---------------------
+// union type pitfall
+//---------------------
+
+// function swapIdType(id: Id): Id {
+//   //can only use props and methods that are common to both number and string types
+//   //parseInt(id)-> not allowed (due to id also having the type number)
+//   parseInt(id);
+
+//   return id;
+// }
+
+// swapIdType("5");
