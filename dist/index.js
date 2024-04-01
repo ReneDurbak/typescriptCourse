@@ -2,28 +2,21 @@
 //---------
 // INTRO
 //---------
-const user = {
+const personOne = {
     id: 1,
-    format() {
-        return `This user has an id of: ${this.id}`;
-    },
+    firstName: 'Naruto'
 };
-const bill = {
-    id: 2,
-    amount: 50,
-    server: "Mario",
-    format() {
-        return `Bill with id ${this.id} has ${this.amount} euros to pay`;
-    },
+const personTwo = {
+    id: '2',
+    firstName: 'Sasuke',
+    email: 'sasuke@konoha.com'
 };
-function printFormatted(value) {
-    console.log(value.format());
+const personThree = {
+    email: 'kakashi@gmail.com'
+};
+function printUser(user) {
+    console.log(user.id, user.email, user.firstName);
 }
-printFormatted(user);
-printFormatted(bill);
-function printBill(bill) {
-    console.log("server:", bill.server, "dad");
-    console.log(bill.format());
-}
-printBill(bill);
-//printBill(user)
+//printUser(personOne)
+printUser(personTwo);
+//printUser(personThree)

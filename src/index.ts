@@ -457,43 +457,80 @@ anotherThing = undefined */
 // extending interfaces
 //------------------------
 
-interface HasFormatter {
-  format(): string;
+// interface HasFormatter {
+//   format(): string;
+// }
+
+// interface Bill extends HasFormatter {
+//   id: string | number;
+//   amount: number;
+//   server: string;
+// }
+
+// const user = {
+//   id: 1,
+//   format(): string {
+//     return `This user has an id of: ${this.id}`;
+//   },
+// };
+
+// const bill = {
+//   id: 2,
+//   amount: 50,
+//   server: "Mario",
+//   format(): string {
+//     return `Bill with id ${this.id} has ${this.amount} euros to pay`;
+//   },
+// };
+
+// function printFormatted(value: HasFormatter): void {
+//   console.log(value.format());
+// }
+
+// printFormatted(user);
+// printFormatted(bill);
+
+// function printBill(bill: Bill): void {
+//   console.log("server:", bill.server, "dad");
+//   console.log(bill.format());
+// }
+
+// printBill(bill);
+// //printBill(user)
+
+
+//------------------------
+// extending type aliases
+//------------------------
+
+type Person = {
+    id: string | number
+    firstName: string
 }
 
-interface Bill extends HasFormatter {
-  id: string | number;
-  amount: number;
-  server: string;
+type User = Person & {
+    email: string
 }
 
-const user = {
-  id: 1,
-  format(): string {
-    return `This user has an id of: ${this.id}`;
-  },
-};
-
-const bill = {
-  id: 2,
-  amount: 50,
-  server: "Mario",
-  format(): string {
-    return `Bill with id ${this.id} has ${this.amount} euros to pay`;
-  },
-};
-
-function printFormatted(value: HasFormatter): void {
-  console.log(value.format());
+const personOne = {
+    id: 1,
+    firstName: 'Naruto'
 }
 
-printFormatted(user);
-printFormatted(bill);
-
-function printBill(bill: Bill): void {
-  console.log("server:", bill.server, "dad");
-  console.log(bill.format());
+const personTwo = {
+    id: '2',
+    firstName: 'Sasuke',
+    email: 'sasuke@konoha.com'
 }
 
-printBill(bill);
-//printBill(user)
+const personThree = {
+    email: 'kakashi@gmail.com'
+}
+
+function printUser(user: User){
+    console.log(user.id, user.email, user.firstName)
+}
+
+//printUser(personOne)
+printUser(personTwo)
+//printUser(personThree)
