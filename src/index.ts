@@ -358,3 +358,41 @@ anotherThing = undefined */
 // const userOne: User = {type:'user', username: "idk45", email: 'idk@gmail.com', id: 7};
 
 // logDetails(personOne);
+
+//---------------------
+// reusable interfaces
+//---------------------
+
+interface hasQuantity {
+  quantity: number;
+}
+
+const something: hasQuantity = {
+  quantity: 28,
+};
+
+function printQuantity(item: hasQuantity): void {
+  console.log(`the quantity of the item is:${item.quantity}`);
+  console.log(`${item}`)
+}
+
+const fruit = {
+  name: "mango",
+  quantity: 50,
+};
+
+const vehicle = {
+  type: "car",
+  quantity: 3,
+};
+
+const person = {
+  name: "Mario",
+  age: 30,
+};
+
+printQuantity(fruit);
+printQuantity(vehicle);
+//printQuantity(person);
+
+//printQuantity({ quantity: 50, name: 'John'})
