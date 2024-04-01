@@ -363,36 +363,92 @@ anotherThing = undefined */
 // reusable interfaces
 //---------------------
 
-interface hasQuantity {
-  quantity: number;
+// interface hasQuantity {
+//   quantity: number;
+// }
+
+// const something: hasQuantity = {
+//   quantity: 28,
+// };
+
+// function printQuantity(item: hasQuantity): void {
+//   console.log(`the quantity of the item is:${item.quantity}`);
+//   console.log(`${item}`)
+// }
+
+// const fruit = {
+//   name: "mango",
+//   quantity: 50,
+// };
+
+// const vehicle = {
+//   type: "car",
+//   quantity: 3,
+// };
+
+// const person = {
+//   name: "Mario",
+//   age: 30,
+// };
+
+// printQuantity(fruit);
+// printQuantity(vehicle);
+// //printQuantity(person);
+
+// //printQuantity({ quantity: 50, name: 'John'})
+
+//---------------------
+// function signatures
+//---------------------
+
+type Calculator = (numOne: number, numTwo: number) => number;
+
+function addTwoNumbers(a: number, b: number) {
+  return a + b;
 }
 
-const something: hasQuantity = {
-  quantity: 28,
-};
-
-function printQuantity(item: hasQuantity): void {
-  console.log(`the quantity of the item is:${item.quantity}`);
-  console.log(`${item}`)
+function multiplyTwoNumbers(first: number, second: number) {
+  return first + second;
 }
 
-const fruit = {
-  name: "mango",
-  quantity: 50,
+function squareNumber(number: number) {
+  return number * number;
+}
+
+function joinTwoNumbers(numOne: number, numTwo: number) {
+  return `${numOne}${numTwo}`;
+}
+
+let calcs: Calculator[] = [];
+
+calcs.push(addTwoNumbers);
+calcs.push(multiplyTwoNumbers);
+calcs.push(squareNumber);
+//calcs.push(joinTwoNumbers)
+
+//-----------------------------------
+// function signatures on interfaces
+//-----------------------------------
+
+interface HasArea {
+  name: string;
+  calcArea(a:number): number
+  //calcArea: (a: number) => number;
+}
+
+const shapeOne: HasArea = {
+  name: "square",
+  calcArea(l: number) {
+    return l * l;
+  },
+};
+//console.log(shapeOne.calcArea(2))
+
+const shapeTwo: HasArea = {
+  name: "circle",
+  calcArea(r: number) {
+    return (Math.PI * r) ^ 2;
+  },
 };
 
-const vehicle = {
-  type: "car",
-  quantity: 3,
-};
-
-const person = {
-  name: "Mario",
-  age: 30,
-};
-
-printQuantity(fruit);
-printQuantity(vehicle);
-//printQuantity(person);
-
-//printQuantity({ quantity: 50, name: 'John'})
+//console.log(shapeTwo.calcArea(5))

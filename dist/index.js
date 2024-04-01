@@ -2,26 +2,33 @@
 //---------
 // INTRO
 //---------
-const something = {
-    quantity: 28,
-};
-function printQuantity(item) {
-    console.log(`the quantity of the item is:${item.quantity}`);
-    console.log(`${item}`);
+function addTwoNumbers(a, b) {
+    return a + b;
 }
-const fruit = {
-    name: "mango",
-    quantity: 50,
+function multiplyTwoNumbers(first, second) {
+    return first + second;
+}
+function squareNumber(number) {
+    return number * number;
+}
+function joinTwoNumbers(numOne, numTwo) {
+    return `${numOne}${numTwo}`;
+}
+let calcs = [];
+calcs.push(addTwoNumbers);
+calcs.push(multiplyTwoNumbers);
+calcs.push(squareNumber);
+const shapeOne = {
+    name: "square",
+    calcArea(l) {
+        return l * l;
+    },
 };
-const vehicle = {
-    type: "car",
-    quantity: 3,
+//console.log(shapeOne.calcArea(2))
+const shapeTwo = {
+    name: "circle",
+    calcArea(r) {
+        return (Math.PI * r) ^ 2;
+    },
 };
-const person = {
-    name: "Mario",
-    age: 30,
-};
-printQuantity(fruit);
-printQuantity(vehicle);
-//printQuantity(person);
-//printQuantity({ quantity: 50, name: 'John'})
+//console.log(shapeTwo.calcArea(5))
