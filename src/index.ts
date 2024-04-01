@@ -401,54 +401,99 @@ anotherThing = undefined */
 // function signatures
 //---------------------
 
-type Calculator = (numOne: number, numTwo: number) => number;
+// type Calculator = (numOne: number, numTwo: number) => number;
 
-function addTwoNumbers(a: number, b: number) {
-  return a + b;
-}
+// function addTwoNumbers(a: number, b: number) {
+//   return a + b;
+// }
 
-function multiplyTwoNumbers(first: number, second: number) {
-  return first + second;
-}
+// function multiplyTwoNumbers(first: number, second: number) {
+//   return first + second;
+// }
 
-function squareNumber(number: number) {
-  return number * number;
-}
+// function squareNumber(number: number) {
+//   return number * number;
+// }
 
-function joinTwoNumbers(numOne: number, numTwo: number) {
-  return `${numOne}${numTwo}`;
-}
+// function joinTwoNumbers(numOne: number, numTwo: number) {
+//   return `${numOne}${numTwo}`;
+// }
 
-let calcs: Calculator[] = [];
+// let calcs: Calculator[] = [];
 
-calcs.push(addTwoNumbers);
-calcs.push(multiplyTwoNumbers);
-calcs.push(squareNumber);
-//calcs.push(joinTwoNumbers)
+// calcs.push(addTwoNumbers);
+// calcs.push(multiplyTwoNumbers);
+// calcs.push(squareNumber);
+// //calcs.push(joinTwoNumbers)
 
 //-----------------------------------
 // function signatures on interfaces
 //-----------------------------------
 
-interface HasArea {
-  name: string;
-  calcArea(a:number): number
-  //calcArea: (a: number) => number;
+// interface HasArea {
+//   name: string;
+//   calcArea(a:number): number
+//   //calcArea: (a: number) => number;
+// }
+
+// const shapeOne: HasArea = {
+//   name: "square",
+//   calcArea(l: number) {
+//     return l * l;
+//   },
+// };
+// //console.log(shapeOne.calcArea(2))
+
+// const shapeTwo: HasArea = {
+//   name: "circle",
+//   calcArea(r: number) {
+//     return (Math.PI * r) ^ 2;
+//   },
+// };
+
+// //console.log(shapeTwo.calcArea(5))
+
+//------------------------
+// extending interfaces
+//------------------------
+
+interface HasFormatter {
+  format(): string;
 }
 
-const shapeOne: HasArea = {
-  name: "square",
-  calcArea(l: number) {
-    return l * l;
-  },
-};
-//console.log(shapeOne.calcArea(2))
+interface Bill extends HasFormatter {
+  id: string | number;
+  amount: number;
+  server: string;
+}
 
-const shapeTwo: HasArea = {
-  name: "circle",
-  calcArea(r: number) {
-    return (Math.PI * r) ^ 2;
+const user = {
+  id: 1,
+  format(): string {
+    return `This user has an id of: ${this.id}`;
   },
 };
 
-//console.log(shapeTwo.calcArea(5))
+const bill = {
+  id: 2,
+  amount: 50,
+  server: "Mario",
+  format(): string {
+    return `Bill with id ${this.id} has ${this.amount} euros to pay`;
+  },
+};
+
+function printFormatted(value: HasFormatter): void {
+  console.log(value.format());
+}
+
+printFormatted(user);
+printFormatted(bill);
+
+function printBill(bill: Bill): void {
+  console.log("server:", bill.server, "dad");
+  console.log(bill.format());
+}
+
+printBill(bill);
+//printBill(user)

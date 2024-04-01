@@ -2,33 +2,28 @@
 //---------
 // INTRO
 //---------
-function addTwoNumbers(a, b) {
-    return a + b;
-}
-function multiplyTwoNumbers(first, second) {
-    return first + second;
-}
-function squareNumber(number) {
-    return number * number;
-}
-function joinTwoNumbers(numOne, numTwo) {
-    return `${numOne}${numTwo}`;
-}
-let calcs = [];
-calcs.push(addTwoNumbers);
-calcs.push(multiplyTwoNumbers);
-calcs.push(squareNumber);
-const shapeOne = {
-    name: "square",
-    calcArea(l) {
-        return l * l;
+const user = {
+    id: 1,
+    format() {
+        return `This user has an id of: ${this.id}`;
     },
 };
-//console.log(shapeOne.calcArea(2))
-const shapeTwo = {
-    name: "circle",
-    calcArea(r) {
-        return (Math.PI * r) ^ 2;
+const bill = {
+    id: 2,
+    amount: 50,
+    server: "Mario",
+    format() {
+        return `Bill with id ${this.id} has ${this.amount} euros to pay`;
     },
 };
-//console.log(shapeTwo.calcArea(5))
+function printFormatted(value) {
+    console.log(value.format());
+}
+printFormatted(user);
+printFormatted(bill);
+function printBill(bill) {
+    console.log("server:", bill.server, "dad");
+    console.log(bill.format());
+}
+printBill(bill);
+//printBill(user)
