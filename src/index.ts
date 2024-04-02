@@ -498,39 +498,82 @@ anotherThing = undefined */
 // printBill(bill);
 // //printBill(user)
 
-
 //------------------------
 // extending type aliases
 //------------------------
 
-type Person = {
-    id: string | number
-    firstName: string
+// type Person = {
+//     id: string | number
+//     firstName: string
+// }
+
+// type User = Person & {
+//     email: string
+// }
+
+// const personOne = {
+//     id: 1,
+//     firstName: 'Naruto'
+// }
+
+// const personTwo = {
+//     id: '2',
+//     firstName: 'Sasuke',
+//     email: 'sasuke@konoha.com'
+// }
+
+// const personThree = {
+//     email: 'kakashi@gmail.com'
+// }
+
+// function printUser(user: User){
+//     console.log(user.id, user.email, user.firstName)
+// }
+
+// //printUser(personOne)
+// printUser(personTwo)
+// //printUser(personThree)
+
+//------------
+// classes
+//------------
+
+type Base = "classic" | "thick" | "thin" | "garlic";
+
+class Pizza {
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+
+  title: string;
+  price: number;
+  base: Base = "classic";
+  toppings: string[] = [];
+
+  addTopping(topping: string): void {
+    this.toppings.push(topping);
+  }
+
+  removeTopping(topping: string): void {
+    this.toppings = this.toppings.filter((t) => t !== topping);
+  }
+
+  selectBase(b: Base): void {
+    this.base = b;
+  }
 }
 
-type User = Person & {
-    email: string
-}
+const pizza = new Pizza("mario special", 15);
+console.log(pizza.title);
+pizza.addTopping("mushrooms");
+pizza.addTopping("olives");
+console.log(pizza.toppings);
+pizza.selectBase("thick");
+console.log(pizza.base)
+console.log(pizza)
 
-const personOne = {
-    id: 1,
-    firstName: 'Naruto'
-}
 
-const personTwo = {
-    id: '2',
-    firstName: 'Sasuke',
-    email: 'sasuke@konoha.com'
-}
-
-const personThree = {
-    email: 'kakashi@gmail.com'
-}
-
-function printUser(user: User){
-    console.log(user.id, user.email, user.firstName)
-}
-
-//printUser(personOne)
-printUser(personTwo)
-//printUser(personThree)
+// const pizzaTwo = new Pizza("luigi special", 26);
+// console.log(pizzaTwo.title);
+// console.log(pizzaTwo.price);
