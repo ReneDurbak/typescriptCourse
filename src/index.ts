@@ -566,16 +566,23 @@ class Pizza {
 
 const pizza = new Pizza("mario special", 15);
 // console.log(pizza.title);
-pizza.addTopping("mushrooms");
-pizza.addTopping("olives");
+// pizza.addTopping("mushrooms");
+// pizza.addTopping("olives");
 //console.log(pizza.toppings);
-pizza.selectBase("thick");
+// pizza.selectBase("thick");
 //console.log(pizza.base)
-console.log(pizza)
+// console.log(pizza);
 
-
-// const pizzaTwo = new Pizza("luigi special", 26);
+const pizzaTwo = new Pizza("luigi special", 26);
 // console.log(pizzaTwo.title);
 // console.log(pizzaTwo.price);
 
+function addMushroomsToPizzas(pizzas: Pizza[]): void {
+  for (const p of pizzas) {
+    p.addTopping('mushrooms');
+  }
+}
+
+addMushroomsToPizzas([pizza, pizzaTwo])
+console.log(pizza, pizzaTwo)
 
