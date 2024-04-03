@@ -564,7 +564,7 @@ class Pizza {
   }
 }
 
-const pizza = new Pizza("mario special", 15);
+const pizza: Pizza = new Pizza("mario special", 15);
 // console.log(pizza.title);
 // pizza.addTopping("mushrooms");
 // pizza.addTopping("olives");
