@@ -540,12 +540,20 @@ anotherThing = undefined */
 
 type Base = "classic" | "thick" | "thin" | "garlic";
 
-class MenuItem {
+interface HasFormatter {
+  get format(): string
+}
+
+class MenuItem implements HasFormatter{
   constructor(private title: string, private price: number) {}
 
   get details(): string {
     //with get keyword the details function works as a property
     return `${this.title} - ${this.price}$`;
+  }
+
+  get format(){
+    return `This menu is called ${this.title} and is ${this.price}$`
   }
 }
 
@@ -573,24 +581,24 @@ class Pizza extends MenuItem {
   }
 }
 
-const pizza: Pizza = new Pizza("mario special", 15);
-// console.log(pizza.title);
-// pizza.addTopping("mushrooms");
-// pizza.addTopping("olives");
-//console.log(pizza.toppings);
-// pizza.selectBase("thick");
-//console.log(pizza.base)
-// console.log(pizza);
 
-function printMenuItem(item: MenuItem): void {
-  console.log(item.details);
+
+const pizza: Pizza = new Pizza("mario special", 15);
+
+// function printMenuItem(item: MenuItem): void {
+//   console.log(item.details);
+// }
+
+// printMenuItem(pizza);
+
+function printFormatted(val: HasFormatter): void {
+  console.log(val.format)
 }
 
-printMenuItem(pizza);
+printFormatted(pizza)
+
 
 const pizzaTwo = new Pizza("luigi special", 26);
-// console.log(pizzaTwo.title);
-// console.log(pizzaTwo.price);
 
 // function addMushroomsToPizzas(pizzas: Pizza[]): void {
 //   for (const p of pizzas) {

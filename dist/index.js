@@ -11,6 +11,9 @@ class MenuItem {
         //with get keyword the details function works as a property
         return `${this.title} - ${this.price}$`;
     }
+    get format() {
+        return `This menu is called ${this.title} and is ${this.price}$`;
+    }
 }
 class Pizza extends MenuItem {
     constructor(title, price) {
@@ -33,20 +36,15 @@ class Pizza extends MenuItem {
     }
 }
 const pizza = new Pizza("mario special", 15);
-// console.log(pizza.title);
-// pizza.addTopping("mushrooms");
-// pizza.addTopping("olives");
-//console.log(pizza.toppings);
-// pizza.selectBase("thick");
-//console.log(pizza.base)
-// console.log(pizza);
-function printMenuItem(item) {
-    console.log(item.details);
+// function printMenuItem(item: MenuItem): void {
+//   console.log(item.details);
+// }
+// printMenuItem(pizza);
+function printFormatted(val) {
+    console.log(val.format);
 }
-printMenuItem(pizza);
+printFormatted(pizza);
 const pizzaTwo = new Pizza("luigi special", 26);
-// console.log(pizzaTwo.title);
-// console.log(pizzaTwo.price);
 // function addMushroomsToPizzas(pizzas: Pizza[]): void {
 //   for (const p of pizzas) {
 //     p.addTopping('mushrooms');
