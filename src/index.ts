@@ -540,12 +540,21 @@ anotherThing = undefined */
 
 type Base = "classic" | "thick" | "thin" | "garlic";
 
-class Pizza {
-  constructor(private title: string, private price: number) {
+class MenuItem {
+  constructor(private title: string, private price: number) {}
+
+  get details(): string {
+    //with get keyword the details function works as a property
+    return `${this.title} - ${this.price}$`;
+  }
+}
+
+class Pizza extends MenuItem {
+  constructor(title: string, price: number) {
     // this.title = title;
     // this.price = price;
+    super(title, price);
   }
-
   // private title: string;
   // private price: number;
   private base: Base = "classic";
@@ -573,16 +582,21 @@ const pizza: Pizza = new Pizza("mario special", 15);
 //console.log(pizza.base)
 // console.log(pizza);
 
+function printMenuItem(item: MenuItem): void {
+  console.log(item.details);
+}
+
+printMenuItem(pizza);
+
 const pizzaTwo = new Pizza("luigi special", 26);
 // console.log(pizzaTwo.title);
 // console.log(pizzaTwo.price);
 
-function addMushroomsToPizzas(pizzas: Pizza[]): void {
-  for (const p of pizzas) {
-    p.addTopping('mushrooms');
-  }
-}
+// function addMushroomsToPizzas(pizzas: Pizza[]): void {
+//   for (const p of pizzas) {
+//     p.addTopping('mushrooms');
+//   }
+// }
 
-addMushroomsToPizzas([pizza, pizzaTwo])
-console.log(pizza, pizzaTwo)
-
+// addMushroomsToPizzas([pizza, pizzaTwo])
+// console.log(pizza, pizzaTwo)
