@@ -541,15 +541,15 @@ anotherThing = undefined */
 type Base = "classic" | "thick" | "thin" | "garlic";
 
 class Pizza {
-  constructor(title: string, price: number) {
-    this.title = title;
-    this.price = price;
+  constructor(private title: string, private price: number) {
+    // this.title = title;
+    // this.price = price;
   }
 
-  title: string;
-  price: number;
-  base: Base = "classic";
-  toppings: string[] = [];
+  // private title: string;
+  // private price: number;
+  private base: Base = "classic";
+  private toppings: string[] = [];
 
   addTopping(topping: string): void {
     this.toppings.push(topping);
@@ -565,15 +565,17 @@ class Pizza {
 }
 
 const pizza = new Pizza("mario special", 15);
-console.log(pizza.title);
+// console.log(pizza.title);
 pizza.addTopping("mushrooms");
 pizza.addTopping("olives");
-console.log(pizza.toppings);
+//console.log(pizza.toppings);
 pizza.selectBase("thick");
-console.log(pizza.base)
+//console.log(pizza.base)
 console.log(pizza)
 
 
 // const pizzaTwo = new Pizza("luigi special", 26);
 // console.log(pizzaTwo.title);
 // console.log(pizzaTwo.price);
+
+
