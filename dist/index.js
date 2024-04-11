@@ -2,7 +2,6 @@
 //---------
 // INTRO
 //---------
-Object.defineProperty(exports, "__esModule", { value: true });
 class DataCollection {
     constructor(data) {
         this.data = data;

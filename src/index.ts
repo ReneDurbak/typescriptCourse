@@ -2,8 +2,6 @@
 // INTRO
 //---------
 
-import { get } from "http";
-
 /* let age: number = 30
 let firstName: string = 'Mario'
 let isFictional: boolean
@@ -12,8 +10,6 @@ age = 32
 firstName = 'Luigi'
 //isFictional = 'false'
 isFictional = true
-
-
 
 let planet = 'Earth'
 let moons = 1
@@ -24,8 +20,6 @@ planet = 'Saturn'
 moons = 145
 //isLarge = 'yes'
 isLarge = true
-
-
 
 
 let something: null
