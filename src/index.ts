@@ -708,28 +708,70 @@ anotherThing = undefined */
 // Generic Interface
 //--------------------
 
-interface Collection<T> {
+// interface Collection<T> {
+//   name: string;
+//   data: T[];
+// }
+
+// const collectionOne: Collection<string> = {
+//   name: "Game collection",
+//   data: ["Gta 5", "CS:GO", "Mafia 2"],
+// };
+
+// const collectionTwo: Collection<number> = {
+//   name: "Winning lottery numbers",
+//   data: [10, 25, 40],
+// };
+
+// function randomCollectionItem<T>(c: Collection<T>): T {
+//   const i = Math.floor(Math.random() * c.data.length);
+
+//   return c.data[i];
+// }
+
+// const resultOne = randomCollectionItem<string>(collectionOne)
+// const resultTwo = randomCollectionItem(collectionTwo)
+// console.log(resultOne)
+// console.log(resultTwo)
+
+//-----------------
+// Generic classes
+//-----------------
+
+class DataCollection<T> {
+  constructor(private data: T[]) {}
+
+  loadOne(): T {
+    const i = Math.floor(Math.random() * this.data.length);
+
+    return this.data[i];
+  }
+  loadAll(): T[] {
+    return this.data;
+  }
+  add(val: T): T[] {
+    this.data.push(val);
+
+    return this.data;
+  }
+}
+
+interface User {
   name: string;
-  data: T[];
+  score: number;
 }
 
-const collectionOne: Collection<string> = {
-  name: "Game collection",
-  data: ["Gta 5", "CS:GO", "Mafia 2"],
-};
+const users = new DataCollection<User>([
+  { name: "Robert", score: 90 },
+  { name: "John", score: 14 },
+  { name: "Michael", score: 67 },
+]);
 
-const collectionTwo: Collection<number> = {
-  name: "Winning lottery numbers",
-  data: [10, 25, 40],
-};
+users.add({name: 'Richard', score: 50})
 
-function randomCollectionItem<T>(c: Collection<T>): T {
-  const i = Math.floor(Math.random() * c.data.length);
+const user = users.loadOne()
+const AllUsers = users.loadAll()
 
-  return c.data[i];
-}
+console.log('load one - ', user)
+console.log('load all - ', AllUsers)
 
-const resultOne = randomCollectionItem<string>(collectionOne)
-const resultTwo = randomCollectionItem(collectionTwo)
-console.log(resultOne)
-console.log(resultTwo)
