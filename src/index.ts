@@ -629,58 +629,77 @@ anotherThing = undefined */
 // Generics 101
 //----------------
 
-function logAndReturnNumber(val: number): number {
-  console.log(val);
-  return val;
+// function logAndReturnNumber(val: number): number {
+//   console.log(val);
+//   return val;
+// }
+
+// function logAndReturnBoolean(val: boolean): boolean {
+//   console.log(val);
+//   return val;
+// }
+
+// function logAndReturnString(val: string): string {
+//   console.log(val);
+//   return val;
+// }
+
+// // example 1
+
+// function logAndReturnValue<T>(val: T): T {
+//   // T - type
+//   console.log(val);
+//   return val;
+// }
+
+// const resultOne = logAndReturnValue<number>(5);
+// const resultTwo = logAndReturnValue<string>("Hello");
+
+// // example 2
+
+// function getRandomArrayValue<T>(values: T[]): T {
+//   const i = Math.floor(Math.random() * values.length);
+
+//   return values[i];
+// }
+
+// // console.log(getRandomArrayValue([1, 2, 3]));
+
+// interface User {
+//   name: string;
+//   score: number;
+// }
+
+// const users: User[] = [
+//   { name: "Peach", score: 25 },
+//   { name: "Mario", score: 150 },
+//   { name: "Luigi", score: 10 },
+//   { name: "Kakashi", score: 74 },
+//   { name: "Pablo", score: 16 },
+// ];
+
+// const randomUser = getRandomArrayValue<User>(users);
+
+// console.log(randomUser);
+
+//---------------------
+// intersection types
+//---------------------
+
+interface HasID {
+  id: number;
 }
 
-function logAndReturnBoolean(val: boolean): boolean {
-  console.log(val);
-  return val;
+function addIDtoValue<T>(val: T): T & HasID {
+  const id = Math.random()
+
+  return {...val, id}
 }
 
-function logAndReturnString(val: string): string {
-  console.log(val);
-  return val;
+interface Post {
+  title: string
+  thumbsUp: number
 }
 
-// example 1
-
-function logAndReturnValue<T>(val: T): T {
-  // T - type
-  console.log(val);
-  return val;
-}
-
-const resultOne = logAndReturnValue<number>(5)
-const resultTwo = logAndReturnValue<string>('Hello')
-
-// example 2
-
-function getRandomArrayValue<T>(values: T[]): T {
-  const i = Math.floor(Math.random() * values.length);
-  
-  return values[i];
-}
-
-
-// console.log(getRandomArrayValue([1, 2, 3]));
-
-interface User {
-  name: string;
-  score: number;
-}
-
-
-
-const users: User[] = [
-  {name: 'Peach', score: 25},
-  {name: 'Mario', score: 150},  
-  {name: 'Luigi', score: 10},
-  {name: 'Kakashi', score: 74},
-  {name: 'Pablo', score: 16}  
-]
-
-const randomUser = getRandomArrayValue<User>(users)
-
-console.log(randomUser)
+const post = addIDtoValue<Post>({title: 'New article', thumbsUp: 250})
+console.log(post.id, post.title, post.thumbsUp)
