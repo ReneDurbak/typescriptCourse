@@ -2,6 +2,8 @@
 // INTRO
 //---------
 
+import { get } from "http";
+
 /* let age: number = 30
 let firstName: string = 'Mario'
 let isFictional: boolean
@@ -538,91 +540,147 @@ anotherThing = undefined */
 // classes
 //------------
 
-type Base = "classic" | "thick" | "thin" | "garlic";
+// type Base = "classic" | "thick" | "thin" | "garlic";
 
-interface HasFormatter {
-  get format(): string;
-}
-
-abstract class MenuItem implements HasFormatter {
-  constructor(private title: string, private price: number) {}
-
-  get details(): string {
-    // with get keyword the details function works as a property
-    return `${this.title} - ${this.price}$`;
-  }
-
-  abstract get format(): string; // function signature
-}
-
-class Pizza extends MenuItem {
-  constructor(title: string, price: number) {
-    // this.title = title;
-    // this.price = price;
-    super(title, price);
-  }
-  // private title: string;
-  // private price: number;
-  private base: Base = "classic";
-  private toppings: string[] = [];
-
-  addTopping(topping: string): void {
-    this.toppings.push(topping);
-  }
-
-  removeTopping(topping: string): void {
-    this.toppings = this.toppings.filter((t) => t !== topping);
-  }
-
-  selectBase(b: Base): void {
-    this.base = b;
-  }
-
-  get format(): string {
-    let formatted = this.details + "\n";
-
-    // base
-    formatted += `Pizza on a ${this.base} base `;
-
-    // toppings
-    if (this.toppings.length < 1) {
-      formatted += 'with no toppings'
-    }else{
-      formatted += `with ${this.toppings.join(', ')}`
-    }
-
-    return formatted
-  }
-}
-
-const pizza: Pizza = new Pizza("mario special", 15);
-
-// function printMenuItem(item: MenuItem): void {
-//   console.log(item.details);
+// interface HasFormatter {
+//   get format(): string;
 // }
 
-// printMenuItem(pizza);
+// abstract class MenuItem implements HasFormatter {
+//   constructor(private title: string, private price: number) {}
 
+//   get details(): string {
+//     // with get keyword the details function works as a property
+//     return `${this.title} - ${this.price}$`;
+//   }
 
+//   abstract get format(): string; // function signature
+// }
 
+// class Pizza extends MenuItem {
+//   constructor(title: string, price: number) {
+//     // this.title = title;
+//     // this.price = price;
+//     super(title, price);
+//   }
+//   // private title: string;
+//   // private price: number;
+//   private base: Base = "classic";
+//   private toppings: string[] = [];
 
-function printFormatted(val: HasFormatter): void {
-  console.log(val.format);
-}
+//   addTopping(topping: string): void {
+//     this.toppings.push(topping);
+//   }
 
+//   removeTopping(topping: string): void {
+//     this.toppings = this.toppings.filter((t) => t !== topping);
+//   }
 
-pizza.addTopping('mushrooms')
-pizza.addTopping('peppers')
+//   selectBase(b: Base): void {
+//     this.base = b;
+//   }
 
-printFormatted(pizza);
+//   get format(): string {
+//     let formatted = this.details + "\n";
 
-const pizzaTwo = new Pizza("luigi special", 26);
+//     // base
+//     formatted += `Pizza on a ${this.base} base `;
 
-// function addMushroomsToPizzas(pizzas: Pizza[]): void {
-//   for (const p of pizzas) {
-//     p.addTopping('mushrooms');
+//     // toppings
+//     if (this.toppings.length < 1) {
+//       formatted += 'with no toppings'
+//     }else{
+//       formatted += `with ${this.toppings.join(', ')}`
+//     }
+
+//     return formatted
 //   }
 // }
 
-// addMushroomsToPizzas([pizza, pizzaTwo])
-// console.log(pizza, pizzaTwo)
+// const pizza: Pizza = new Pizza("mario special", 15);
+
+// // function printMenuItem(item: MenuItem): void {
+// //   console.log(item.details);
+// // }
+
+// // printMenuItem(pizza);
+
+// function printFormatted(val: HasFormatter): void {
+//   console.log(val.format);
+// }
+
+// pizza.addTopping('mushrooms')
+// pizza.addTopping('peppers')
+
+// printFormatted(pizza);
+
+// const pizzaTwo = new Pizza("luigi special", 26);
+
+// // function addMushroomsToPizzas(pizzas: Pizza[]): void {
+// //   for (const p of pizzas) {
+// //     p.addTopping('mushrooms');
+// //   }
+// // }
+
+// // addMushroomsToPizzas([pizza, pizzaTwo])
+// // console.log(pizza, pizzaTwo)
+
+//----------------
+// Generics 101
+//----------------
+
+function logAndReturnNumber(val: number): number {
+  console.log(val);
+  return val;
+}
+
+function logAndReturnBoolean(val: boolean): boolean {
+  console.log(val);
+  return val;
+}
+
+function logAndReturnString(val: string): string {
+  console.log(val);
+  return val;
+}
+
+// example 1
+
+function logAndReturnValue<T>(val: T): T {
+  // T - type
+  console.log(val);
+  return val;
+}
+
+const resultOne = logAndReturnValue<number>(5)
+const resultTwo = logAndReturnValue<string>('Hello')
+
+// example 2
+
+function getRandomArrayValue<T>(values: T[]): T {
+  const i = Math.floor(Math.random() * values.length);
+  
+  return values[i];
+}
+
+
+// console.log(getRandomArrayValue([1, 2, 3]));
+
+interface User {
+  name: string;
+  score: number;
+}
+
+
+
+const users: User[] = [
+  {name: 'Peach', score: 25},
+  {name: 'Mario', score: 150},  
+  {name: 'Luigi', score: 10},
+  {name: 'Kakashi', score: 74},
+  {name: 'Pablo', score: 16}  
+]
+
+const randomUser = getRandomArrayValue<User>(users)
+
+console.log(randomUser)
