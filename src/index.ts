@@ -734,11 +734,16 @@ anotherThing = undefined */
 // console.log(resultOne)
 // console.log(resultTwo)
 
-//-----------------
-// Generic classes
-//-----------------
+//-----------------------------------------
+// Generic classes & generic constraints
+//-----------------------------------------
 
-class DataCollection<T> {
+
+interface HasId {
+  id: number
+}
+
+class DataCollection<T extends HasId> {
   constructor(private data: T[]) {}
 
   loadOne(): T {
@@ -746,32 +751,38 @@ class DataCollection<T> {
 
     return this.data[i];
   }
+
   loadAll(): T[] {
     return this.data;
   }
+
   add(val: T): T[] {
     this.data.push(val);
-
     return this.data;
+  }
+
+  deleteOne(id: number): void{
+    this.data = this.data.filter((item) => item.id !== id)
   }
 }
 
 interface User {
+  id: number
   name: string;
   score: number;
 }
 
 const users = new DataCollection<User>([
-  { name: "Robert", score: 90 },
-  { name: "John", score: 14 },
-  { name: "Michael", score: 67 },
+  { id:1,name: "Robert", score: 90 },
+  { id:2,name: "John", score: 14 },
+  { id:3,name: "Michael", score: 67 },
 ]);
 
-users.add({name: 'Richard', score: 50})
+users.add({id:4, name: "Richard", score: 50 });
+users.deleteOne(3)
 
-const user = users.loadOne()
-const AllUsers = users.loadAll()
+const user = users.loadOne();
+const AllUsers = users.loadAll();
 
-console.log('load one - ', user)
-console.log('load all - ', AllUsers)
-
+console.log("load one - ", user);
+console.log("load all - ", AllUsers);
