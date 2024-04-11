@@ -3,9 +3,19 @@
 // INTRO
 //---------
 Object.defineProperty(exports, "__esModule", { value: true });
-function addIDtoValue(val) {
-    const id = Math.random();
-    return Object.assign(Object.assign({}, val), { id });
+const collectionOne = {
+    name: "Game collection",
+    data: ["Gta 5", "CS:GO", "Mafia 2"],
+};
+const collectionTwo = {
+    name: "Winning lottery numbers",
+    data: [10, 25, 40],
+};
+function randomCollectionItem(c) {
+    const i = Math.floor(Math.random() * c.data.length);
+    return c.data[i];
 }
-const post = addIDtoValue({ title: 'New article', thumbsUp: 250 });
-console.log(post.id, post.title, post.thumbsUp);
+const resultOne = randomCollectionItem(collectionOne);
+const resultTwo = randomCollectionItem(collectionTwo);
+console.log(resultOne);
+console.log(resultTwo);

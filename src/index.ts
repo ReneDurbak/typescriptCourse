@@ -686,20 +686,50 @@ anotherThing = undefined */
 // intersection types
 //---------------------
 
-interface HasID {
-  id: number;
+// interface HasID {
+//   id: number;
+// }
+
+// function addIDtoValue<T>(val: T): T & HasID {
+//   const id = Math.random()
+
+//   return {...val, id}
+// }
+
+// interface Post {
+//   title: string
+//   thumbsUp: number
+// }
+
+// const post = addIDtoValue<Post>({title: 'New article', thumbsUp: 250})
+// console.log(post.id, post.title, post.thumbsUp)
+
+//--------------------
+// Generic Interface
+//--------------------
+
+interface Collection<T> {
+  name: string;
+  data: T[];
 }
 
-function addIDtoValue<T>(val: T): T & HasID {
-  const id = Math.random()
+const collectionOne: Collection<string> = {
+  name: "Game collection",
+  data: ["Gta 5", "CS:GO", "Mafia 2"],
+};
 
-  return {...val, id}
+const collectionTwo: Collection<number> = {
+  name: "Winning lottery numbers",
+  data: [10, 25, 40],
+};
+
+function randomCollectionItem<T>(c: Collection<T>): T {
+  const i = Math.floor(Math.random() * c.data.length);
+
+  return c.data[i];
 }
 
-interface Post {
-  title: string
-  thumbsUp: number
-}
-
-const post = addIDtoValue<Post>({title: 'New article', thumbsUp: 250})
-console.log(post.id, post.title, post.thumbsUp)
+const resultOne = randomCollectionItem<string>(collectionOne)
+const resultTwo = randomCollectionItem(collectionTwo)
+console.log(resultOne)
+console.log(resultTwo)
